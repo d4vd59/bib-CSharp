@@ -1,4 +1,4 @@
-# bib-C-
+# bib-CSharp
 Das ist Bildung innovativ Bereitstellen - bib (C#)
 
 Dies ist die native Desktop-Version der Quiz-App, entwickelt in C#.
