@@ -5,32 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quizduell"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-        <StackPanel Margin="20">
-            <TextBlock Text="Kategorien" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
-            
-            <!-- Eingabebereich für neue Kategorien -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox x:Name="CategoryNameTextBox" 
-                         Width="200" 
-                         Margin="0,0,10,0"
-                         Padding="5"/>
-                <Button Content="Kategorie hinzufügen" 
-                        Click="AddCategory_Click" 
-                        Width="150"/>
-                <Button Content="Bearbeiten" 
-                Click="EditCategory_Click" 
-                Width="100"/>
-                <Button Content="Löschen" 
-                Click="DeleteCategory_Click"
-                        
-                Width="100"/>
+        Title="Quiz Verwaltung" Height="500" Width="900">
+    <TabControl Margin="10">
+        <!-- Tab für Kategorien -->
+        <TabItem Header="Kategorien">
+            <StackPanel Margin="20">
+                <TextBlock Text="Kategorien verwalten" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="CategoryNameTextBox" 
+                             Width="300" 
+                             Margin="0,0,10,0"
+                             Padding="5"/>
+                    <Button Content="Kategorie hinzufügen" 
+                            Click="AddCategory_Click" 
+                            Width="150"
+                            Margin="0,0,5,0"/>
+                    <Button Content="Bearbeiten" 
+                            Click="EditCategory_Click" 
+                            Width="100"
+                            Margin="0,0,5,0"/>
+                    <Button Content="Löschen" 
+                            Click="DeleteCategory_Click"
+                            Width="100"/>
+                </StackPanel>
+                
+                <Button Content="Kategorien laden" 
+                        Click="LoadCategories_Click" 
+                        Width="150"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,10"/>
+                
+                <DataGrid x:Name="CategoriesGrid" 
+                          Height="250"/>
             </StackPanel>
-            
-            <DataGrid x:Name="CategoriesGrid" Height="200" Margin="0,0,0,20"/>
-            <Button Content="Kategorien laden" Click="LoadCategories_Click" Width="150"/>
-        </StackPanel>
-    </Grid>
+        </TabItem>
+        
+        <!-- Tab für Antworten -->
+        <TabItem Header="Antworten">
+            <StackPanel Margin="20">
+                <TextBlock Text="Antworten verwalten" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+                
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="question:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox x:Name="QuestionIdTextBox" Grid.Row="0" Grid.Column="1" Width="200" HorizontalAlignment="Left" Padding="5" Margin="0,0,0,5"/>
+                    
+                    <TextBlock Text="text:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox x:Name="AnswerTextBox" Grid.Row="1" Grid.Column="1" Width="400" HorizontalAlignment="Left" Padding="5" Margin="0,0,0,5"/>
+                    
+                    <CheckBox x:Name="CorrectAnswerCheckBox" 
+                              Content="correct_answer" 
+                              Grid.Row="2" Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              Margin="0,5,0,0"/>
+                </Grid>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <Button x:Name="AddAnswerButton" Content="Antwort hinzufügen" 
+                            Click="AddAnswer_Click" 
+                            Width="150"
+                            Margin="0,0,5,0"/>
+                    <Button Content="Bearbeiten" 
+                            Click="EditAnswer_Click" 
+                            Width="100"
+                            Margin="0,0,5,0"/>
+                    <Button Content="Löschen" 
+                            Click="DeleteAnswer_Click"
+                            Width="100"/>
+                </StackPanel>
+                
+                <Button Content="Antworten laden" 
+                        Click="LoadAnswers_Click" 
+                        Width="150"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,10"/>
+                
+                <DataGrid x:Name="AnswersGrid" 
+                          Height="200" 
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="question" Binding="{Binding question}" Width="100"/>
+                        <DataGridTextColumn Header="text" Binding="{Binding text}" Width="*"/>
+                        <DataGridCheckBoxColumn Header="correct_answer" Binding="{Binding correct_answer}" Width="120"/>
+                        <DataGridTextColumn Header="answered_correctly" Binding="{Binding answered_correctly}" Width="140"/>
+                        <DataGridTextColumn Header="answered_incorrectly" Binding="{Binding answered_incorrectly}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </Window>
