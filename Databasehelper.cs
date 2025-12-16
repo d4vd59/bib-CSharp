@@ -48,6 +48,18 @@ namespace Quizduell
                 return dt;
             }
         }
+        public DataTable GetQuestions()
+        {
+            using (SQLiteConnection conn = GetConnection())
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM question", conn);
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+            }
+        }
 
     }
 }
