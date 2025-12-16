@@ -7,8 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        
         <StackPanel Margin="20">
             <TextBlock Text="Kategorien" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+            
+            <!-- Eingabebereich für neue Kategorien -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBox x:Name="CategoryNameTextBox" 
+                         Width="200" 
+                         Margin="0,0,10,0"
+                         Padding="5"/>
+                <Button Content="Kategorie hinzufügen" 
+                        Click="AddCategory_Click" 
+                        Width="150"/>
+                <Button Content="Bearbeiten" 
+                Click="EditCategory_Click" 
+                Width="100"/>
+                <Button Content="Löschen" 
+                Click="DeleteCategory_Click"
+                        
+                Width="100"/>
+            </StackPanel>
+            
             <DataGrid x:Name="CategoriesGrid" Height="200" Margin="0,0,0,20"/>
             <Button Content="Kategorien laden" Click="LoadCategories_Click" Width="150"/>
         </StackPanel>
